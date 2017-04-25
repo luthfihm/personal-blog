@@ -1,0 +1,34 @@
+{
+  "name": "personal-blog",
+  "version": "1.0.0",
+  "description": "My Personal Blog",
+  "author": "Luthfi Hamid Masykuri <mail@luthfihm.com>",
+  "private": true,
+  "dependencies": {
+    "contentful": "^4.2.1",
+    "marked": "^0.3.6",
+    "nuxt": "latest"
+  },
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "precommit": "npm run lint",
+    "firebase:init": "mkdir deploy && cd deploy && firebase login && firebase init",
+    "firebase:deploy": "nuxt generate && rm -rf deploy/public && mv dist deploy/public && cd deploy && firebase login && firebase deploy"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.1.1",
+    "css-loader": "^0.28.0",
+    "eslint": "^3.15.0",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-loader": "^1.6.1",
+    "eslint-plugin-html": "^2.0.0",
+    "eslint-plugin-promise": "^3.4.1",
+    "eslint-plugin-standard": "^2.0.1",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "style-loader": "^0.16.1"
+  }
+}
