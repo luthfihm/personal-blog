@@ -2,6 +2,7 @@
   <div>
     <Header />
     <nuxt/>
+    <hr>
     <Footer />
   </div>
 </template>

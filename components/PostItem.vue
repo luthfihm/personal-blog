@@ -7,7 +7,7 @@
         </h2>
       </nuxt-link>
       <p>{{ contentPreview }}</p>
-      <p class="post-meta">Posted by <a href="#">{{ author.name }}</a> on {{ date.format('MMMM D, YYYY') }}</p>
+      <p class="post-meta">Posted by <a :href="author.website" target="_blank">{{ author.name }}</a> on {{ date.format('MMMM D, YYYY') }}</p>
     </div>
     <hr>
   </div>

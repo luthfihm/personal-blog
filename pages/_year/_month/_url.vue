@@ -1,7 +1,7 @@
 <template>
   <div>
-    <header class="intro-header post-banner" v-if="ready">
-      <div class="container">
+    <header class="intro-header post-banner">
+      <div class="container" v-if="ready">
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="post-heading">
@@ -22,9 +22,12 @@
   </div>
 </template>
 
-<style>
-  header.post-banner {
-    background-color: #213E4A;
+<style lang="scss">
+  header {
+    &.post-banner {
+      background-color: #213E4A;
+      min-height: 60px;
+    }
   }
 </style>
 

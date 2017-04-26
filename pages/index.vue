@@ -23,9 +23,11 @@
   </div>
 </template>
 
-<style>
-  header.home-banner {
-    background-image: url('/images/home-banner.jpg')
+<style lang="scss">
+  header {
+    &.home-banner {
+      background-image: url('/images/home-banner.jpg')
+    }
   }
 </style>
 
