@@ -12,10 +12,13 @@
         </div>
       </div>
     </header>
-    <article v-if="ready">
+    <article>
       <div class="container">
         <div class="row">
-          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" v-html="postBody" />
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" v-html="postBody" v-if="ready" />
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" v-if="!ready">
+            <PreLoader />
+          </div>
         </div>
       </div>
     </article>
@@ -32,6 +35,7 @@
 </style>
 
 <script>
+  import PreLoader from '~/components/PreLoader.vue'
   import client from '~/utilities/client'
   import moment from 'moment'
   import marked from 'marked'
@@ -43,6 +47,9 @@
         author: null,
         ready: false
       }
+    },
+    components: {
+      PreLoader
     },
     computed: {
       postBody () {
