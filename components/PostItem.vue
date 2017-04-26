@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="post-preview">
-      <nuxt-link :to="`/post/${post.sys.id}`">
+      <nuxt-link :to="`/${post.fields.slug}`">
         <h2 class="post-title">
           {{ post.fields.title }}
         </h2>
@@ -19,9 +19,6 @@
   import NuxtLink from '../.nuxt/components/nuxt-link'
   export default {
     components: {NuxtLink},
-    props: ['post'],
-    mounted () {
-      console.log(this.post.fields.author[0].fields)
-    }
+    props: ['post']
   }
 </script>

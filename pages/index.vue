@@ -1,6 +1,6 @@
 <template>
   <div>
-    <header class="intro-header" style="background-image: url('https://blackrockdigital.github.io/startbootstrap-clean-blog/img/home-bg.jpg')">
+    <header class="intro-header home-banner">
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -23,27 +23,32 @@
   </div>
 </template>
 
+<style>
+  header.home-banner {
+    background-image: url('/images/home-banner.jpg')
+  }
+</style>
+
 <script>
   import PostItem from '~/components/PostItem.vue'
   import client from '~/utilities/client'
 
   export default {
-    components: {
-      PostItem
-    },
     data () {
       return {
         posts: []
       }
     },
+    components: {
+      PostItem
+    },
     mounted () {
       const _this = this
       client.getEntries({
         content_type: '2wKn6yEnZewu2SCCkus4as'
+      }).then(response => {
+        _this.posts = response.items
       })
-        .then((response) => {
-          _this.posts = response.items
-        }).catch(console.error)
     }
   }
 </script>
