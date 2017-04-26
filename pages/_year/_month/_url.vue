@@ -24,6 +24,7 @@
 
 <script>
   import client from '~/utilities/client'
+  import moment from 'moment'
   import marked from 'marked'
 
   export default {
@@ -40,10 +41,14 @@
       }
     },
     async mounted () {
-      const { id } = this.$route.params
+      const { year, month, url } = this.$route.params
+      let startDate = moment(`${year}-${month}-01`)
+      let endDate = moment(startDate).month(startDate.month() + 1).subtract(1, 'days')
       let posts = await client.getEntries({
         content_type: '2wKn6yEnZewu2SCCkus4as',
-        'fields.slug': id
+        'fields.date[gte]': startDate.format('YYYY-MM-DD'),
+        'fields.date[lte]': endDate.format('YYYY-MM-DD'),
+        'fields.slug': url
       })
       if (posts.items.length > 0) {
         this.post = posts.items[0].fields
