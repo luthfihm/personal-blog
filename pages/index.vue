@@ -42,13 +42,19 @@
     components: {
       PostItem
     },
+    methods: {
+      async getPosts (page) {
+        const limit = 1
+        let { items } = await client.getEntries({
+          content_type: '2wKn6yEnZewu2SCCkus4as',
+          limit,
+          skip: limit * (page - 1)
+        })
+        this.posts = items
+      }
+    },
     mounted () {
-      const _this = this
-      client.getEntries({
-        content_type: '2wKn6yEnZewu2SCCkus4as'
-      }).then(response => {
-        _this.posts = response.items
-      })
+      this.getPosts(1)
     }
   }
 </script>

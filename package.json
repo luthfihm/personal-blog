@@ -18,7 +18,7 @@
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint",
     "firebase:init": "mkdir deploy && cd deploy && firebase login && firebase init",
-    "firebase:deploy": "nuxt generate && rm -rf deploy/public && mv dist deploy/public && cd deploy && firebase login && firebase deploy"
+    "firebase:deploy": "nuxt generate && rm -rf deploy/public && mv dist deploy/public && cd deploy && firebase deploy"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",

@@ -17,11 +17,16 @@
           <li>
             <nuxt-link to="/">Home</nuxt-link>
           </li>
-          <li>
-            <a href="about.html">About</a>
+          <li class="Categories">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li v-for="category in categories">
+                <nuxt-link :to="`/category/${category.fields.slug}`">{{ category.fields.title }}</nuxt-link>
+              </li>
+            </ul>
           </li>
           <li>
-            <nuxt-link to="">Sample Post</nuxt-link>
+            <a href="https://luthfihm.com" target="_blank">About</a>
           </li>
         </ul>
       </div>
@@ -30,3 +35,40 @@
     <!-- /.container -->
   </nav>
 </template>
+
+<style>
+  .navbar-default .navbar-nav > .open > a,
+  .navbar-default .navbar-nav > .open > a:focus,
+  .navbar-default .navbar-nav > .open > a:hover {
+    background-color: #fff;
+  }
+
+  .navbar-custom .dropdown-menu li a {
+    color: #555;
+  }
+
+  .navbar-custom .dropdown-menu li a:hover,
+  .navbar-custom .dropdown-menu li a:focus {
+    color: #333;
+  }
+</style>
+
+<script>
+  import client from '~/utilities/client'
+  import NuxtLink from '../.nuxt/components/nuxt-link'
+
+  export default {
+    components: {NuxtLink},
+    data () {
+      return {
+        categories: []
+      }
+    },
+    async mounted () {
+      let { items } = await client.getEntries({
+        content_type: '5KMiN6YPvi42icqAUQMCQe'
+      })
+      this.categories = items
+    }
+  }
+</script>

@@ -40,6 +40,14 @@
         return marked(this.post.body, {sanitize: true})
       }
     },
+    head () {
+      return {
+        title: `${this.post.title} | Catatanku - Luthfihm Blog`,
+        meta: [
+          { hid: 'description', name: 'description', content: 'My custom description' }
+        ]
+      }
+    },
     async mounted () {
       const { year, month, url } = this.$route.params
       let startDate = moment(`${year}-${month}-01`)

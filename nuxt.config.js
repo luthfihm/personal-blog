@@ -7,7 +7,11 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Luthfihm Blog' }
+      { hid: 'title', name: 'title', content: 'Catatanku - Luthfihm Blog' },
+      { hid: 'google-site-verification', name: 'google-site-verification', content: 'UcMRw9WlhJ8RaYIg8cdQot6bGIZC02c0XHsDJsKgVXk' },
+      { hid: 'application-name', name: 'application-name', content: 'Catatanku - Luthfi Hamid Masykuri' },
+      { hid: 'msapplication-tooltip', name: 'msapplication-tooltip', content: 'Catatanku - Luthfi Hamid Masykuri' },
+      { hid: 'description', name: 'description', content: 'Secarik Catatan untuk Berbagi' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
