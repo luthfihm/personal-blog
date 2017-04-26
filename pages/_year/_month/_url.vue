@@ -1,12 +1,12 @@
 <template>
   <div>
-    <header class="intro-header" style="background-image: url('https://blackrockdigital.github.io/startbootstrap-clean-blog/img/post-bg.jpg')" v-if="ready">
+    <header class="intro-header post-banner" v-if="ready">
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="post-heading">
               <h1>{{ post.title }}</h1>
-              <span class="meta">Diposting oleh <a href="#">{{ author.name }}</a> pada August 24, 2014</span>
+              <span class="meta">Posted by <a href="#">{{ author.name }}</a> on {{ date.format('MMMM D, YYYY') }}</span>
             </div>
           </div>
         </div>
@@ -22,6 +22,12 @@
   </div>
 </template>
 
+<style>
+  header.post-banner {
+    background-color: #213E4A;
+  }
+</style>
+
 <script>
   import client from '~/utilities/client'
   import moment from 'moment'
@@ -30,19 +36,29 @@
   export default {
     data () {
       return {
-        post: {},
-        author: {},
+        post: null,
+        author: null,
         ready: false
       }
     },
     computed: {
       postBody () {
         return marked(this.post.body, {sanitize: true})
+      },
+      date () {
+        return moment(this.post.date)
+      },
+      title () {
+        if (this.post !== null) {
+          return `${this.post.title} | Catatanku - Luthfihm Blog`
+        } else {
+          return 'Catatanku - Luthfihm Blog'
+        }
       }
     },
     head () {
       return {
-        title: `${this.post.title} | Catatanku - Luthfihm Blog`,
+        title: this.title,
         meta: [
           { hid: 'description', name: 'description', content: 'My custom description' }
         ]

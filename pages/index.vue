@@ -44,13 +44,16 @@
     },
     methods: {
       async getPosts (page) {
-        const limit = 1
+        const limit = 10
+        const _this = this
         let { items } = await client.getEntries({
           content_type: '2wKn6yEnZewu2SCCkus4as',
           limit,
           skip: limit * (page - 1)
         })
-        this.posts = items
+        items.map(item => {
+          _this.posts.push(item.fields)
+        })
       }
     },
     mounted () {

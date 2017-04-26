@@ -1,15 +1,13 @@
 <template>
   <div>
     <div class="post-preview">
-      <nuxt-link :to="`/${date.format('YYYY/MM')}/${post.fields.slug}`">
+      <nuxt-link :to="`/${date.format('YYYY/MM')}/${post.slug}`">
         <h2 class="post-title">
-          {{ post.fields.title }}
+          {{ post.title }}
         </h2>
-        <h3 class="post-subtitle">
-          Problems look mighty small from 150 miles up
-        </h3>
       </nuxt-link>
-      <p class="post-meta">Posted by <a href="#">{{ post.fields.author[0].fields.name }}</a> on {{ date.format('MMMM D, YYYY') }}</p>
+      <p>{{ contentPreview }}</p>
+      <p class="post-meta">Posted by <a href="#">{{ author.name }}</a> on {{ date.format('MMMM D, YYYY') }}</p>
     </div>
     <hr>
   </div>
@@ -18,13 +16,22 @@
 <script>
   import NuxtLink from '../.nuxt/components/nuxt-link'
   import moment from 'moment'
+  import marked from 'marked'
 
   export default {
     components: {NuxtLink},
     props: ['post'],
     computed: {
       date () {
-        return moment(this.post.fields.date)
+        return moment(this.post.date)
+      },
+      author () {
+        return this.post.author[0].fields
+      },
+      contentPreview () {
+        let bodyDom = document.createElement('div')
+        bodyDom.innerHTML = marked(this.post.body, { sanitize: true })
+        return bodyDom.getElementsByTagName('p')[0].innerHTML
       }
     }
   }
