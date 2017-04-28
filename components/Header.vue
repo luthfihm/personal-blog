@@ -36,23 +36,6 @@
   </nav>
 </template>
 
-<style>
-  .navbar-default .navbar-nav > .open > a,
-  .navbar-default .navbar-nav > .open > a:focus,
-  .navbar-default .navbar-nav > .open > a:hover {
-    background-color: #fff;
-  }
-
-  .navbar-custom .dropdown-menu li a {
-    color: #555;
-  }
-
-  .navbar-custom .dropdown-menu li a:hover,
-  .navbar-custom .dropdown-menu li a:focus {
-    color: #333;
-  }
-</style>
-
 <script>
   import client from '~/utilities/client'
   import NuxtLink from '../.nuxt/components/nuxt-link'

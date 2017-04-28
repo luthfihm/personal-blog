@@ -25,15 +25,6 @@
   </div>
 </template>
 
-<style lang="scss">
-  header {
-    &.post-banner {
-      background-color: #213E4A;
-      min-height: 60px;
-    }
-  }
-</style>
-
 <script>
   import PreLoader from '~/components/PreLoader.vue'
   import client from '~/utilities/client'

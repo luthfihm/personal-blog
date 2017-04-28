@@ -1,0 +1,25 @@
+header {
+  &.home-banner {
+    background-image: url('/images/home-banner.jpg')
+  }
+
+  &.post-banner {
+    background-color: #213E4A;
+    min-height: 60px;
+  }
+}
+
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:focus,
+.navbar-default .navbar-nav > .open > a:hover {
+  background-color: #fff;
+}
+
+.navbar-custom .dropdown-menu li a {
+  color: #555;
+
+  &:hover,
+  &:focus {
+    color: #333;
+  }
+}

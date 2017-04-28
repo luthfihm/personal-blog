@@ -27,6 +27,9 @@ module.exports = {
       { src: 'https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-clean-blog/3.3.7/js/clean-blog.min.js' }
     ]
   },
+  css: [
+    { src: '~assets/stylesheets/main.scss', lang: 'scss' }
+  ],
   /*
   ** Customize the progress-bar color
   */

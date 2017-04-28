@@ -24,14 +24,6 @@
   </div>
 </template>
 
-<style lang="scss">
-  header {
-    &.home-banner {
-      background-image: url('/images/home-banner.jpg')
-    }
-  }
-</style>
-
 <script>
   import PostItem from '~/components/PostItem.vue'
   import PreLoader from '~/components/PreLoader.vue'
