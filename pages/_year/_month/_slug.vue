@@ -75,14 +75,14 @@
       }
     },
     async mounted () {
-      const { year, month, url } = this.$route.params
+      const { year, month, slug } = this.$route.params
       let startDate = moment(`${year}-${month}-01`)
       let endDate = moment(startDate).month(startDate.month() + 1).subtract(1, 'days')
       let posts = await client.getEntries({
         content_type: '2wKn6yEnZewu2SCCkus4as',
         'fields.date[gte]': startDate.format('YYYY-MM-DD'),
         'fields.date[lte]': endDate.format('YYYY-MM-DD'),
-        'fields.slug': url
+        'fields.slug': slug
       })
       if (posts.items.length > 0) {
         this.post = posts.items[0].fields
