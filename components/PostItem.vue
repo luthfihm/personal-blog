@@ -26,7 +26,7 @@
         return moment(this.post.date)
       },
       author () {
-        return this.post.author[0].fields
+        return this.post.author.fields
       },
       contentPreview () {
         let bodyDom = document.createElement('div')

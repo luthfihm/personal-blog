@@ -35,7 +35,6 @@
     data () {
       return {
         post: null,
-        author: null,
         ready: false
       }
     },
@@ -55,6 +54,9 @@
         } else {
           return 'Catatanku - Luthfihm Blog'
         }
+      },
+      author () {
+        return this.post.author.fields
       }
     },
     head () {
@@ -77,8 +79,6 @@
       })
       if (posts.items.length > 0) {
         this.post = posts.items[0].fields
-        let author = await client.getEntry(this.post.author[0].sys.id)
-        this.author = author.fields
         this.ready = true
       }
     }
