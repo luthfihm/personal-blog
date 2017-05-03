@@ -50,6 +50,23 @@
     },
     components: {
       PostItem
+    },
+    computed: {
+      title () {
+        if (this.category !== null) {
+          return `${this.category.title} | Catatanku - Luthfihm Blog`
+        } else {
+          return 'Catatanku - Luthfihm Blog'
+        }
+      }
+    },
+    head () {
+      return {
+        title: this.title,
+        meta: [
+          { hid: 'description', name: 'description', content: 'My custom description' }
+        ]
+      }
     }
   }
 </script>
