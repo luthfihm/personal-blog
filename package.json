@@ -5,6 +5,7 @@
   "author": "Luthfi Hamid Masykuri <mail@luthfihm.com>",
   "private": true,
   "dependencies": {
+    "axios": "^0.16.1",
     "contentful": "^4.2.1",
     "marked": "^0.3.6",
     "moment": "^2.18.1",

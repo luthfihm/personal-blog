@@ -6,8 +6,8 @@
           {{ post.title }}
         </h2>
       </nuxt-link>
-      <p>{{ contentPreview }}</p>
-      <p class="post-meta">Posted by <a :href="author.website" target="_blank">{{ author.name }}</a> on {{ date.format('MMMM D, YYYY') }}</p>
+      <div v-html="contentPreview" />
+      <p class="post-meta">Posted by <a href="https://luthfihm.com" target="_blank">Luthfi Hamid Masykuri</a> on {{ date.format('MMMM D, YYYY') }}</p>
     </div>
     <hr>
   </div>
@@ -25,13 +25,8 @@
       date () {
         return moment(this.post.date)
       },
-      author () {
-        return this.post.author.fields
-      },
       contentPreview () {
-        let bodyDom = document.createElement('div')
-        bodyDom.innerHTML = marked(this.post.body, { sanitize: true })
-        return bodyDom.getElementsByTagName('p')[0].innerHTML
+        return marked(this.post.body, {sanitize: true}).match(/<p\b[^>]*>(.*?)<\/p>/g)[0]
       }
     }
   }

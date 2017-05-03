@@ -1,20 +1,20 @@
 <template>
   <div>
-    <Header />
+    <HeaderLayout />
     <nuxt/>
     <hr>
-    <Footer />
+    <FooterLayout />
   </div>
 </template>
 
 <script>
-  import Header from '~/components/Header.vue'
-  import Footer from '~/components/Footer.vue'
+  import HeaderLayout from '~/components/Header.vue'
+  import FooterLayout from '~/components/Footer.vue'
 
   export default {
     components: {
-      Header,
-      Footer
+      HeaderLayout,
+      FooterLayout
     }
   }
 </script>
