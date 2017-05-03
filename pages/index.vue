@@ -33,30 +33,22 @@
     data () {
       return {
         posts: [],
-        loading: true
+        loading: false
+      }
+    },
+    async asyncData () {
+      let response = await client.getPosts()
+      let posts = []
+      response.data.items.map(item => {
+        posts.push(item.fields)
+      })
+      return {
+        posts
       }
     },
     components: {
       PostItem,
       PreLoader
-    },
-    methods: {
-      async getPosts (page) {
-        const limit = 10
-        const _this = this
-        let { items } = await client.getEntries({
-          content_type: '2wKn6yEnZewu2SCCkus4as',
-          limit,
-          skip: limit * (page - 1)
-        })
-        items.map(item => {
-          _this.posts.push(item.fields)
-        })
-        this.loading = false
-      }
-    },
-    mounted () {
-      this.getPosts(1)
     }
   }
 </script>

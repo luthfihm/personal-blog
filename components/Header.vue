@@ -48,10 +48,8 @@
       }
     },
     async mounted () {
-      let { items } = await client.getEntries({
-        content_type: '5KMiN6YPvi42icqAUQMCQe'
-      })
-      this.categories = items
+      let { data } = await client.getCategories()
+      this.categories = data.items
     }
   }
 </script>
