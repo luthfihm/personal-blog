@@ -1,9 +1,9 @@
 <template>
   <div>
-    <HeaderLayout />
-    <nuxt/>
+    <HeaderLayout></HeaderLayout>
+    <nuxt></nuxt>
     <hr>
-    <FooterLayout />
+    <FooterLayout></FooterLayout>
   </div>
 </template>
 

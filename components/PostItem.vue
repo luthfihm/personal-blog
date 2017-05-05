@@ -6,7 +6,7 @@
           {{ post.title }}
         </h2>
       </nuxt-link>
-      <div v-html="contentPreview" />
+      <div v-html="contentPreview"></div>
       <p class="post-meta">Posted by <a href="https://luthfihm.com" target="_blank">Luthfi Hamid Masykuri</a> on {{ date.format('MMMM D, YYYY') }}</p>
     </div>
     <hr>

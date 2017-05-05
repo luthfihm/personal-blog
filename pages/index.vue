@@ -16,8 +16,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-          <PostItem v-for="post in posts" :post="post" />
-          <PreLoader v-if="loading" />
+          <PostItem v-for="post in posts" :post="post"></PostItem>
         </div>
       </div>
     </div>
@@ -26,14 +25,12 @@
 
 <script>
   import PostItem from '~/components/PostItem.vue'
-  import PreLoader from '~/components/PreLoader.vue'
   import client from '~/utilities/client'
 
   export default {
     data () {
       return {
-        posts: [],
-        loading: false
+        posts: []
       }
     },
     async asyncData () {
@@ -47,8 +44,7 @@
       }
     },
     components: {
-      PostItem,
-      PreLoader
+      PostItem
     }
   }
 </script>
