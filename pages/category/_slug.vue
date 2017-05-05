@@ -85,10 +85,10 @@
         }
       },
       prevLink () {
-        return `/?page=${this.page - 1}`
+        return `?page=${this.page - 1}`
       },
       nextLink () {
-        return `/?page=${this.page + 1}`
+        return `?page=${this.page + 1}`
       },
       prevAvailable () {
         return this.posts.length > 0 && this.page > 1
