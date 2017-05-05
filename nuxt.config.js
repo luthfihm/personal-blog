@@ -1,4 +1,8 @@
 module.exports = {
+  router: {
+    // Run the middleware/user-agent.js on every pages
+    middleware: 'default'
+  },
   /*
   ** Headers of the page
   */

@@ -16,6 +16,9 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" v-html="postBody"></div>
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <p><i>Categories: <nuxt-link :to="`/category/${category.slug}`">{{ category.title }}</nuxt-link></i></p>
+          </div>
         </div>
       </div>
     </article>
@@ -28,11 +31,19 @@
   import marked from 'marked'
 
   export default {
-    async asyncData ({ params }) {
+    async asyncData ({ params, error }) {
       const { slug } = params
-      let response = await client.getPosts({ 'fields.slug': slug })
-      return {
-        post: response.data.items[0].fields
+      try {
+        let responsePost = await client.getPosts({'fields.slug': slug})
+        let post = responsePost.data.items[0].fields
+        let responseCategory = await client.getEntry(post.category.sys.id)
+        let category = responseCategory.data.fields
+        return {
+          post,
+          category
+        }
+      } catch (e) {
+        error(e)
       }
     },
     computed: {

@@ -22,6 +22,9 @@ const client = {
     return api.get('entries', {
       params
     })
+  },
+  getEntry (id) {
+    return api.get(`entries/${id}`)
   }
 }
 

@@ -5,16 +5,11 @@ import Vuex from 'vuex'
 
 const store = new Vuex.Store({
   state: {
-    posts: []
+    categories: []
   },
   mutations: {
-    resetData (state) {
-      state = {
-        posts: []
-      }
-    },
-    setPosts (state, posts) {
-      state.posts = posts
+    addCategories (state, categories) {
+      state.categories = categories
     }
   }
 })

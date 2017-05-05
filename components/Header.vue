@@ -17,13 +17,8 @@
           <li>
             <nuxt-link to="/">Home</nuxt-link>
           </li>
-          <li class="Categories">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li v-for="category in categories">
-                <nuxt-link :to="`/category/${category.fields.slug}`">{{ category.fields.title }}</nuxt-link>
-              </li>
-            </ul>
+          <li v-for="category in categories">
+            <nuxt-link :to="`/category/${category.fields.slug}`">{{ category.fields.title }}</nuxt-link>
           </li>
           <li>
             <a href="https://luthfihm.com" target="_blank">About</a>
@@ -37,19 +32,13 @@
 </template>
 
 <script>
-  import client from '~/utilities/client'
   import NuxtLink from '../.nuxt/components/nuxt-link'
+  import { mapState } from 'vuex'
 
   export default {
     components: {NuxtLink},
-    data () {
-      return {
-        categories: []
-      }
-    },
-    async mounted () {
-      let { data } = await client.getCategories()
-      this.categories = data.items
-    }
+    computed: mapState([
+      'categories'
+    ])
   }
 </script>
