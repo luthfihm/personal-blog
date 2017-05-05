@@ -43,7 +43,7 @@
       }
     },
     async asyncData ({query}) {
-      const limit = 10
+      const limit = 5
       let page = 1
       let posts = []
       let total = 0

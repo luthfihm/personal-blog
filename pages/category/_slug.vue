@@ -16,6 +16,14 @@
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
           <PostItem v-for="post in posts" :post="post"></PostItem>
+          <ul class="pager">
+            <li class="previous" v-if="prevAvailable">
+              <nuxt-link :to="prevLink">&larr; Newer Posts</nuxt-link>
+            </li>
+            <li class="next" v-if="nextAvailable">
+              <nuxt-link :to="nextLink">Older Posts &rarr;</nuxt-link>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -27,25 +35,42 @@
   import client from '~/utilities/client'
 
   export default {
-    async asyncData ({ params }) {
+    async asyncData ({ params, query }) {
       const { slug } = params
-      let categories = await client.getCategories({
-        'fields.slug': slug
-      })
-      let category = categories.data.items[0].fields
-      let contentType = categories.data.items[0].sys.contentType.sys.id
-      let response = await client.getPosts({
-        'fields.category.sys.contentType.sys.id': contentType,
-        'fields.category.fields.slug[match]': category.slug
-      })
+      const limit = 5
+      let page = 1
       let posts = []
-      response.data.items.map(item => {
-        posts.push(item.fields)
-      })
+      let total = 0
+      let category = null
+      let contentType = null
+      if (query.page) {
+        page = parseInt(query.page)
+      }
+      try {
+        let categories = await client.getCategories({
+          'fields.slug': slug
+        })
+        category = categories.data.items[0].fields
+        contentType = categories.data.items[0].sys.contentType.sys.id
+        let response = await client.getPosts({
+          'fields.category.sys.contentType.sys.id': contentType,
+          'fields.category.fields.slug[match]': category.slug,
+          limit,
+          skip: (page - 1) * limit
+        })
+        response.data.items.map(item => {
+          posts.push(item.fields)
+        })
+      } catch (e) {
+        console.log(e.message)
+      }
       return {
         category,
         posts,
-        contentType
+        contentType,
+        page,
+        total,
+        limit
       }
     },
     components: {
@@ -58,6 +83,18 @@
         } else {
           return 'Catatanku - Luthfihm Blog'
         }
+      },
+      prevLink () {
+        return `/?page=${this.page - 1}`
+      },
+      nextLink () {
+        return `/?page=${this.page + 1}`
+      },
+      prevAvailable () {
+        return this.posts.length > 0 && this.page > 1
+      },
+      nextAvailable () {
+        return this.page * this.limit < this.total
       }
     },
     head () {
